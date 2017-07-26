@@ -5,6 +5,7 @@ use Carp;
 
 my $base_path = ".";
 my $app_prefix_path = "app";
+my $user_boot_file = "user.pl";
 my $env_file = ".env";
 my $env_config;
 my $tasks = {};
@@ -12,6 +13,7 @@ my $storage_prefix_path = "storage";
 my $storages = {};
 my $date = strftime("%Y-%m-%d", localtime);
 my $log_handle;
+my $databases = {};
 
 sub set_base_path {
     my $argv = shift;
@@ -29,6 +31,10 @@ sub get_log_handle {
 
 sub get_base_path {
     $base_path;
+}
+
+sub get_user_boot_file {
+    $base_path . "/user.pl";
 }
 
 sub get_app_path {
@@ -67,6 +73,25 @@ sub get_log_file {
 
 sub get_tasks {
     $tasks;
+}
+
+sub get_database {
+    my $name = shift;
+    Carp::confess "no $name database" unless $databases->{$name};
+    my $database = $databases->{$name};
+    $database->{"instance"} = $database->{"model"}->connect($database->{"dsn"}, $database->{"username"}, $database->{"password"}, $database->{"options"}) unless $databases->{$name}{"instance"};
+    $database->{"instance"};
+}
+
+sub set_database {
+    my $name = shift;
+    Carp::confess "no $name database" unless $databases->{$name};
+    $databases->{$name}{"model"} = shift;
+}
+
+sub set_database_config {
+    my $name = shift;
+    $databases->{$name} = shift;
 }
 
 ### instance ###
