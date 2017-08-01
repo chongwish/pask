@@ -14,6 +14,7 @@ my $storages = {};
 my $date = strftime("%Y-%m-%d", localtime);
 my $log_handle;
 my $databases = {};
+my $arguments = {};
 
 sub set_base_path {
     my $argv = shift;
@@ -73,6 +74,15 @@ sub get_log_file {
 
 sub get_tasks {
     $tasks;
+}
+
+sub set_argument {
+    my $name = shift;
+    $arguments->{$name} = shift;
+}
+
+sub get_argument {
+    $arguments->{(shift)};
 }
 
 sub get_database {

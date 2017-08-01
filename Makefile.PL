@@ -16,7 +16,6 @@ WriteMakefile(
     },
     BUILD_REQUIRES => {
         'Test::More' => '0',
-        "Config::General" => "0",
         "Config:INI:Reader" => "0",
         "File::Find::Rule" => "0"
     },

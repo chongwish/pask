@@ -66,7 +66,8 @@ sub fire {
         my $file_handle = Pask::Container::get_log_handle;
         
         my $task = Pask::Container::get_task $_[0];
-        Pask::Storage::error "Task name $_[0] is not exsit!" unless $task;        
+        Pask::Storage::error "Task name $_[0] is not exsit!" unless $task;
+        Pask::Parameter::init;
         print $file_handle "--- Task [", $task->{"name"}, "] Begin ---\n";
         my $timing = time;
 
