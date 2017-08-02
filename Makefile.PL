@@ -17,7 +17,8 @@ WriteMakefile(
     BUILD_REQUIRES => {
         'Test::More' => '0',
         "Config:INI:Reader" => "0",
-        "File::Find::Rule" => "0"
+        "File::Find::Rule" => "0",
+        "Term::ANSIColor" => "0"
     },
     PREREQ_PM => {
         #'ABC'              => '1.6',
