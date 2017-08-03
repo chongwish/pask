@@ -1,5 +1,7 @@
 package Pask::Storage;
 
+use utf8;
+use open ':std', ':encoding(UTF-8)';
 use Term::ANSIColor;
 use Carp;
 
